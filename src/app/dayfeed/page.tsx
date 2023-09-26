@@ -6,7 +6,8 @@ import { useUser } from "@clerk/nextjs";
 import { mdBreakpoint } from "@/utils/tailwind";
 import useWindowSize from "@/hooks/useWindowSize";
 import UserCard from "../components/UserCard";
-import MyDayForm from "./MyDayForm";
+import MyDayForm from "../components/MyDayForm";
+import AllDaysFeed from "../components/AllDaysFeed";
 
 export default function DayFeed() {
   const { user } = useUser();
@@ -33,19 +34,19 @@ export default function DayFeed() {
         }`}
       >
         {/* LEFT (User profile & friends) */}
-        <div className={isNonMobileScreen ? "basis-2/5" : undefined}>
+        <div className={isNonMobileScreen ? "basis-1/3" : undefined}>
           {/* USER CARD */}
           <UserCard />
         </div>
         {/* RIGHT/CENTER (Days Feed) */}
         <div
-          className={`${isNonMobileScreen ? "basis-1/2" : undefined} ${
+          className={`${isNonMobileScreen ? "basis-3/5" : undefined} ${
             isNonMobileScreen ? undefined : "mt-8"
           }`}
         >
           {/* DAYS FEED */}
           <MyDayForm />
-          <div>All Days Feed</div>
+          <AllDaysFeed />
         </div>
       </div>
     </>

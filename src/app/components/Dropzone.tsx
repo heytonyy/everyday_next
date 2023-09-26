@@ -1,41 +1,43 @@
 import { useDropzone } from "react-dropzone";
 import { Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
+import { useCallback } from "react";
 
-export default function DropzoneComponent() {
+interface DropzoneProps {
+  clearSetImage: boolean;
+}
+
+export default function DropzoneComponent({ clearSetImage }: DropzoneProps) {
   const [image, setImage] = useState<File | null>(null);
 
-  const { getRootProps, getInputProps } = useDropzone({
-    multiple: false,
-    accept: {
-      "image/*": [".jpeg", ".jpg", ".png"],
-    },
-  });
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    setImage(acceptedFiles[0]);
+  }, []);
+
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
+  if (!clearSetImage) {
+    setImage(null);
+  }
 
   return (
     <div
-      {...getRootProps()}
-      className="rounded-md border-dashed p-4 hover:cursor-pointer"
+      {...getRootProps({ className: "dropzone" })}
+      className="rounded-md border border-dashed border-black p-4 hover:cursor-pointer"
     >
-      <input {...getInputProps()} />
       <div className="flex items-center justify-between">
-        <div
-          {...getRootProps()}
-          className="w-full border-2 border-dashed p-4 hover:cursor-pointer"
-        >
-          <input {...getInputProps()} />
-          {!image ? (
-            <p>Add picture here</p>
-          ) : (
-            <div className="flex items-center justify-between">
-              <span>{image.name}</span>
-              <Pencil />
-            </div>
-          )}
-        </div>
+        <input {...getInputProps()} />
+        {!image ? (
+          <p>Click or Drop picture here</p>
+        ) : (
+          <div className="flex items-center justify-between text-gray-700">
+            <span>{image.name}</span>
+            <Pencil color="black" />
+          </div>
+        )}
         {image && (
           <button onClick={() => setImage(null)} className="w-1/6">
-            <Trash2 />
+            <Trash2 color="black" />
           </button>
         )}
       </div>

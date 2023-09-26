@@ -10,8 +10,9 @@ export default function AvatarImage() {
   }
 
   return (
-    <div className="h-16 w-16">
+    <div className="flex h-16 w-16 items-center">
       <Image
+        priority
         className={`rounded-full object-cover`}
         width={64}
         height={64}

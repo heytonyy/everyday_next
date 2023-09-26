@@ -22,15 +22,15 @@ export default function UserCard() {
           <div>
             <div className="flex items-center justify-between font-medium text-gray-700 hover:cursor-pointer hover:text-blue-500">
               {user.firstName} {user.lastName}
-              <span
-                aria-label="username"
-                className="ml-4 text-xs font-medium text-gray-700"
-              >
-                @{user.username}
-              </span>
+            </div>
+            <div
+              aria-label="username"
+              className="text-xs font-medium text-gray-700"
+            >
+              @{user.username}
             </div>
             {/* TODO: add friends number */}
-            <div aria-label="friends count" className="font-light">
+            <div aria-label="friends count" className="mt-2 text-xs font-light">
               0 friends
             </div>
           </div>

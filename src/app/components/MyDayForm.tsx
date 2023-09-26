@@ -1,9 +1,9 @@
-import AvatarImage from "../components/AvatarImage";
+import AvatarImage from "./AvatarImage";
 import { useState } from "react";
 import { mdBreakpoint } from "@/utils/tailwind";
 import useWindowSize from "@/hooks/useWindowSize";
-import DropzoneComponent from "../components/Dropzone";
-import CardDivider from "../components/CardDivider";
+import DropzoneComponent from "./Dropzone";
+import CardDivider from "./CardDivider";
 import { FileImage, Mic, MoreHorizontal, Paperclip, Video } from "lucide-react";
 
 export default function MyDayForm() {
@@ -13,10 +13,18 @@ export default function MyDayForm() {
   const windowSize = useWindowSize();
   const isNonMobileScreen = windowSize.width >= mdBreakpoint;
 
+  const handleDay = () => {
+    // TODO: Send day to server component
+    console.log(day);
+
+    setIsImage(false);
+    setDay("");
+  };
+
   return (
     <div className="rounded-xl bg-gray-200 px-4 py-6 shadow-md">
       {/* PICTURE AND TEXT FORM */}
-      <div className="gap-6">
+      <div className="flex items-center justify-between gap-6">
         <AvatarImage />
         <input
           id="day-field"
@@ -29,7 +37,7 @@ export default function MyDayForm() {
       {/* IMAGE DROPZONE FORM / TOGGLE */}
       {isImage && (
         <div className="mt-4 rounded border p-4">
-          <DropzoneComponent />
+          <DropzoneComponent clearSetImage={isImage} />
         </div>
       )}
       <CardDivider />
@@ -63,6 +71,19 @@ export default function MyDayForm() {
             <MoreHorizontal color="black" />
           </div>
         )}
+
+        {/* SUBMIT BUTTON */}
+        <button
+          disabled={!day}
+          onClick={handleDay}
+          className={`rounded-md bg-gray-300 px-4 py-2 text-gray-700 ${
+            day && isImage
+              ? "hover:cursor-pointer hover:bg-blue-500 hover:text-white"
+              : "cursor-not-allowed"
+          }`}
+        >
+          Post
+        </button>
       </div>
     </div>
   );
