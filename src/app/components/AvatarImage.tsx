@@ -2,7 +2,11 @@
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 
-export default function AvatarImage() {
+interface AvatarImageProps {
+  size?: number;
+}
+
+export default function AvatarImage({ size = 64 }: AvatarImageProps) {
   const { user } = useUser();
 
   if (!user) {
@@ -10,12 +14,12 @@ export default function AvatarImage() {
   }
 
   return (
-    <div className="flex h-16 w-16 items-center">
+    <div className="flex h-16 w-16 items-center justify-center">
       <Image
         priority
         className={`rounded-full object-cover`}
-        width={64}
-        height={64}
+        width={size}
+        height={size}
         src={user.imageUrl}
         alt="user profile"
       />

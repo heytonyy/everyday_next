@@ -4,8 +4,8 @@ export default function ChatPage() {
   return (
     <>
       <NavBar />
-      <div className="flex h-screen items-center justify-center">
-        <h1 className="text-5xl font-bold">Chat Page</h1>
+      <div className="flex items-center justify-center">
+        <div className="mt-8 text-5xl font-bold">Chat Page</div>
       </div>
     </>
   );
