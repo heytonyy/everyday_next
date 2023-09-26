@@ -1,3 +1,5 @@
+"use client";
+
 import { isServer } from "@/utils/utils";
 import { useState, useEffect } from "react";
 
