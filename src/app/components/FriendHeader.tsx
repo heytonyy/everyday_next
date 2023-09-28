@@ -16,8 +16,8 @@ export default function FriendHeader() {
 
   return (
     <div className="flex items-center justify-between">
-      <div className="flex items-center justify-between gap-4">
-        <AvatarImage size={50} />
+      <div className="flex items-center justify-between gap-4 pl-2">
+        <AvatarImage />
         <div onClick={() => navigateToUserProfile()}>
           <span className="flex items-center justify-between font-medium text-gray-700 hover:cursor-pointer hover:text-blue-500">
             Friend Name

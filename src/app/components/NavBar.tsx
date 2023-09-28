@@ -4,11 +4,15 @@ import { mdBreakpoint } from "@/utils/tailwind";
 import useWindowSize from "@/hooks/useWindowSize";
 import { MessageCircle, Moon, Sun } from "lucide-react";
 import { useRouter } from "next/navigation";
-
 import { UserButton } from "@clerk/nextjs";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { setMode } from "../redux/reducers";
+import { ThemeToggler } from "./ThemeToggler";
 
 export default function NavBar() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const mode = useAppSelector((state) => state.mode);
 
   const windowSize = useWindowSize();
   const isNonMobileScreen = windowSize.width >= mdBreakpoint;
@@ -45,9 +49,8 @@ export default function NavBar() {
         <button onClick={() => navigateToChat()}>
           <MessageCircle color="white" />
         </button>
-        {/* TODO: create this feature */}
         {/* DARK/LIGHT MODE */}
-        <button>{true ? <Moon color="white" /> : <Sun />}</button>
+        <ThemeToggler />
         {/* DROPDOWN MENU */}
         <UserButton afterSignOutUrl="/" />
       </div>

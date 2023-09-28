@@ -14,7 +14,9 @@ export default function AvatarImage({ size = 64 }: AvatarImageProps) {
   }
 
   return (
-    <div className="flex h-16 w-16 items-center justify-center">
+    <div
+      className={`flex h-16 w-16 items-center justify-center overflow-hidden rounded-full`}
+    >
       <Image
         priority
         className={`rounded-full object-cover`}
