@@ -2,27 +2,19 @@
 
 import { mdBreakpoint } from "@/utils/tailwind";
 import useWindowSize from "@/hooks/useWindowSize";
-import { MessageCircle, Moon, Sun } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { setMode } from "../redux/reducers";
 import { ThemeToggler } from "./ThemeToggler";
+import MessageIcon from "./MessageIcon";
 
 export default function NavBar() {
   const router = useRouter();
-  const dispatch = useAppDispatch();
-  const mode = useAppSelector((state) => state.mode);
 
   const windowSize = useWindowSize();
   const isNonMobileScreen = windowSize.width >= mdBreakpoint;
 
   const navigateToDayFeed = () => {
     router.push("/dayfeed");
-  };
-
-  const navigateToChat = () => {
-    router.push("/chat");
   };
 
   return (
@@ -46,9 +38,7 @@ export default function NavBar() {
       {/* DESKTOP MENU */}
       <div className="flex items-center justify-between gap-8">
         {/* CHAT ICON */}
-        <button onClick={() => navigateToChat()}>
-          <MessageCircle color="white" />
-        </button>
+        <MessageIcon />
         {/* DARK/LIGHT MODE */}
         <ThemeToggler />
         {/* DROPDOWN MENU */}
