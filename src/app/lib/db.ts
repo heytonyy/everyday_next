@@ -1,22 +1,47 @@
-import mongoose from "mongoose";
+import { MongoClient, Db, ServerApiVersion } from "mongodb";
 import { env } from "@/env";
 
-mongoose.Promise = global.Promise;
+const uri = env.MONGODB_URI;
 
-let cachedClient: mongoose.Mongoose | null = null;
+let client: MongoClient;
+let cachedDb: Db;
 
-async function connectToDatabase() {
-  if (cachedClient) {
-    return cachedClient;
+export async function connectToDatabase() {
+  if (!uri) {
+    throw new Error("MONGO_URI environment variable not set");
   }
 
-  const connection = await mongoose.connect(env.MONGODB_URI, {
-    retryWrites: true,
-    w: "majority",
-  });
+  if (cachedDb) {
+    return cachedDb;
+  }
 
-  cachedClient = connection;
-  return cachedClient;
+  try {
+    client = new MongoClient(uri, {
+      serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      },
+    });
+
+    const connection = await client.connect();
+
+    // Get reference to default database
+    const db = connection.db("everday-next");
+
+    console.log("Connected to MongoDB cluster! Caching connection...");
+    cachedDb = db;
+    return db;
+  } catch (error) {
+    console.log("Error connecting to MongoDB cluster!", error);
+    throw error;
+  }
 }
 
-export { connectToDatabase };
+export async function getDb() {
+  if (!client) {
+    await connectToDatabase();
+  }
+
+  return cachedDb;
+}

@@ -6,7 +6,5 @@ export default authMiddleware({
 });
 
 export const config = {
-  matcher: ["/dayfeed(.*)", "/chat(.*)"],
+  matcher: ["/dayfeed(.*)", "/chat(.*)", "/api/get-user"],
 };
-
-// add "/api/get-token" to matchers when stream is set up

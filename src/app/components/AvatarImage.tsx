@@ -2,12 +2,9 @@
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 
-interface AvatarImageProps {
-  size?: number;
-}
-
-export default function AvatarImage({ size = 64 }: AvatarImageProps) {
+export default function AvatarImage() {
   const { user } = useUser();
+  const size = 64; // 64px 4rem
 
   if (!user) {
     return null;

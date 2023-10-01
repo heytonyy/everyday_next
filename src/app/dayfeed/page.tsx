@@ -1,19 +1,35 @@
 "use client";
 
-import NavBar from "../components/NavBar";
+import { useEffect } from "react";
 import { LoadingIndicator } from "stream-chat-react";
-import { useUser } from "@clerk/nextjs";
 import { mdBreakpoint } from "@/utils/tailwind";
 import useWindowSize from "@/hooks/useWindowSize";
+import NavBar from "../components/NavBar";
 import UserCard from "../components/UserCard";
 import MyDayForm from "../components/MyDayForm";
 import AllDaysFeed from "../components/AllDaysFeed";
+import { useAppDispatch, useAppSelector } from "../state/hooks";
+import { setUser } from "../state/reducers";
 
 export default function DayFeed() {
-  const { user } = useUser();
-
   const windowSize = useWindowSize();
   const isNonMobileScreen = windowSize.width >= mdBreakpoint;
+
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await fetch("/api/get-user");
+      const data = await response.json();
+      dispatch(setUser(data.user));
+    };
+
+    getUser();
+
+    return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // If the user is not ready, show a loading indicator
   if (!user) {
@@ -35,8 +51,7 @@ export default function DayFeed() {
       >
         {/* LEFT (User profile & friends) */}
         <div className={isNonMobileScreen ? "basis-1/3" : undefined}>
-          {/* USER CARD */}
-          <UserCard />
+          <UserCard user={user} />
         </div>
         {/* RIGHT/CENTER (Days Feed) */}
         <div
@@ -44,9 +59,8 @@ export default function DayFeed() {
             isNonMobileScreen ? undefined : "mt-8"
           }`}
         >
-          {/* DAYS FEED */}
           <MyDayForm />
-          <AllDaysFeed />
+          <AllDaysFeed user={user} />
         </div>
       </div>
     </>

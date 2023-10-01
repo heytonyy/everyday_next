@@ -3,6 +3,7 @@ import { StoreState } from "./types";
 
 const initialState: StoreState = {
   mode: "light",
+  user: null,
 };
 
 export const storageSlice = createSlice({
@@ -12,8 +13,11 @@ export const storageSlice = createSlice({
     setMode: (state, action) => {
       state.mode = action.payload;
     },
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
   },
 });
 
-export const { setMode } = storageSlice.actions;
+export const { setMode, setUser } = storageSlice.actions;
 export default storageSlice.reducer;

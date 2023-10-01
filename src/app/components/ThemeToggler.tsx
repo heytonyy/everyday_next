@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
-import { useAppDispatch } from "../redux/hooks";
-import { setMode } from "../redux/reducers";
+import { useAppDispatch } from "../state/hooks";
+import { setMode } from "../state/reducers";
 
 export function ThemeToggler() {
   const [mounted, setMounted] = useState(false);
