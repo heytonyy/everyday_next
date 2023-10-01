@@ -51,7 +51,7 @@ export default function DayFeed() {
       >
         {/* LEFT (User profile & friends) */}
         <div className={isNonMobileScreen ? "basis-1/3" : undefined}>
-          <UserCard user={user} />
+          <UserCard />
         </div>
         {/* RIGHT/CENTER (Days Feed) */}
         <div

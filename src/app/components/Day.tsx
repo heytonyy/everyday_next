@@ -32,15 +32,16 @@ export default function Day() {
   };
 
   return (
-    <div className="rounded-xl bg-gray-200 px-4 py-6 shadow-md dark:bg-gray-800">
+    <div className="flex flex-col gap-x-4  gap-y-2 rounded-xl bg-gray-200 px-4 py-6 shadow-md dark:bg-gray-800">
       {/* FRIEND HEADER */}
       <FriendHeader />
       {/* DAY SECTION */}
-      <div className="mt-4 text-gray-900 dark:text-white">Day Description</div>
+      <div className="text-gray-900 dark:text-white">Day Description</div>
       {/* DAY IMAGE */}
-      <div id="image-container" className="mt-3 rounded-xl">
+      <div id="image-container">
         {width && (
           <Image
+            priority
             width={width}
             height={height}
             alt="day"
@@ -49,10 +50,10 @@ export default function Day() {
         )}
       </div>
       {/* DAY LIKES AND COMMENTS */}
-      <div className="mt-1 flex items-center justify-between">
-        <div className="flex items-center justify-between gap-4 pt-2">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4">
           {/* LIKES */}
-          <div className="flex items-center justify-between gap-1">
+          <div className="flex items-center justify-between gap-2">
             <button onClick={() => patchLike()}>
               {isLiked ? (
                 <ThumbsDown color={theme === "light" ? "#1f2937" : "white"} />
@@ -63,7 +64,7 @@ export default function Day() {
             <span>0 likes</span>
           </div>
           {/* COMMENTS */}
-          <div className="flex items-center justify-between gap-1">
+          <div className="flex items-center justify-between gap-2">
             <button onClick={() => setIsComments(!isComments)}>
               <MessageSquare color={theme === "light" ? "#1f2937" : "white"} />
             </button>
@@ -72,23 +73,19 @@ export default function Day() {
         </div>
       </div>
       {isComments && (
-        <div className="mt-2">
-          {/* TODO: Map comments from redux */}
-          <div key={1}>
-            <CardDivider />
-            <span className="mt-2 pl-4 text-gray-700 dark:text-gray-400">
-              comment
-            </span>
-            <CardDivider />
-            <span className="mt-2 pl-4 text-gray-700 dark:text-gray-400">
-              comment
-            </span>
-            <CardDivider />
-            <span className="mt-2 pl-4 text-gray-700 dark:text-gray-400">
-              comment
-            </span>
-          </div>
-          {/* <CardDivider /> */}
+        <div className="mt-2 flex flex-col">
+          <CardDivider />
+          {/* TODO: Map comments from day */}
+          {[1, 2, 3, 4, 5].map((item) => {
+            return (
+              <div key={item} className="flex flex-col">
+                <span className="py-4 pl-4 text-gray-700 dark:text-gray-400">
+                  comment
+                </span>
+                <CardDivider />
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

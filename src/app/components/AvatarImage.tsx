@@ -12,7 +12,7 @@ export default function AvatarImage() {
 
   return (
     <div
-      className={`flex h-16 w-16 items-center justify-center overflow-hidden rounded-full`}
+      className={`flex items-center justify-center overflow-hidden rounded-full`}
     >
       <Image
         priority

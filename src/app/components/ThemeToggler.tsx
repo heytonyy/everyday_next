@@ -28,14 +28,6 @@ export function ThemeToggler() {
     handleClick();
   };
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-
   const handleClick = () => {
     setIsHovered(false);
   };
@@ -44,14 +36,14 @@ export function ThemeToggler() {
     <button onClick={() => toggleTheme()}>
       {theme === "light" ? (
         <Moon
-          onMouseEnter={() => handleMouseEnter()}
-          onMouseLeave={() => handleMouseLeave()}
-          color={`${isHovered && !isClicked ? "dodgerblue" : "white"}`}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          color={`${isHovered && !isClicked ? "#424242" : "white"}`}
         />
       ) : (
         <Sun
-          onMouseEnter={() => handleMouseEnter()}
-          onMouseLeave={() => handleMouseLeave()}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           color={`${isHovered && !isClicked ? "dodgerblue" : "white"}`}
         />
       )}

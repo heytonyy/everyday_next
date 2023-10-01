@@ -19,30 +19,31 @@ export default function FriendHeader() {
 
   return (
     <div className="flex items-center justify-between">
-      <div className="flex items-center justify-between gap-4 pl-2">
+      <div className="flex items-center justify-between gap-4">
         <AvatarImage />
-        <div onClick={() => navigateToUserProfile()}>
-          <span className="flex items-center justify-between text-gray-900 hover:cursor-pointer hover:text-blue-500 dark:text-white">
+        <div>
+          <div
+            onClick={() => navigateToUserProfile()}
+            className="text-gray-900 hover:cursor-pointer hover:text-blue-500 dark:text-white dark:hover:text-blue-500"
+          >
             Friend Name
-          </span>
-          <span className="flex items-center justify-between text-xs text-gray-700 dark:text-gray-400">
+          </div>
+          <div className="text-xs text-gray-700 dark:text-gray-400">
             Location
-          </span>
+          </div>
         </div>
       </div>
-      <div className="flex items-center justify-between gap-4">
-        {/* ADD/REMOVE FRIEND */}
-        <button
-          onClick={() => handlePatchFriend()}
-          className="flex items-center justify-between gap-2 rounded-full bg-gray-300 p-2 hover:bg-blue-500 dark:bg-gray-700 dark:hover:bg-blue-500"
-        >
-          {isFriend ? (
-            <UserMinus color={theme === "light" ? "#1f2937" : "white"} />
-          ) : (
-            <UserPlus color={theme === "light" ? "#1f2937" : "white"} />
-          )}
-        </button>
-      </div>
+      {/* ADD/REMOVE FRIEND */}
+      <button
+        onClick={() => handlePatchFriend()}
+        className="mr-2 rounded-full bg-gray-300 p-2 hover:bg-blue-500 dark:bg-gray-700 dark:hover:bg-blue-500"
+      >
+        {isFriend ? (
+          <UserMinus color={theme === "light" ? "#1f2937" : "white"} />
+        ) : (
+          <UserPlus color={theme === "light" ? "#1f2937" : "white"} />
+        )}
+      </button>
     </div>
   );
 }

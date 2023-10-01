@@ -10,6 +10,7 @@ import { useTheme } from "next-themes";
 export default function MyDayForm() {
   const [day, setDay] = useState("");
   const [isImage, setIsImage] = useState(false);
+  const [hovered, setHovered] = useState("");
 
   const { theme } = useTheme();
 
@@ -19,7 +20,6 @@ export default function MyDayForm() {
   const handleDay = () => {
     // TODO: Send day to server component
     console.log(day);
-
     setIsImage(false);
     setDay("");
   };
@@ -43,42 +43,109 @@ export default function MyDayForm() {
           <DropzoneComponent clearSetImage={isImage} />
         </div>
       )}
-      <CardDivider />
+      <div className="my-4">
+        <CardDivider />
+      </div>
+      {/* DAY MENU */}
       <div className="flex items-center justify-between">
-        <div
-          className="flex items-center justify-between gap-1"
+        <button
+          className="flex items-center justify-between gap-1 hover:cursor-pointer"
           onClick={() => setIsImage(!isImage)}
+          onMouseEnter={() => setHovered("image")}
+          onMouseLeave={() => setHovered("")}
         >
-          <FileImage color={theme === "light" ? "#1f2937" : "white"} />
-          <span className="text-gray-900 hover:cursor-pointer hover:text-blue-500 dark:text-gray-400">
-            Image
-          </span>
-        </div>
+          {hovered === "image" ? (
+            <>
+              <FileImage color="#1e90ff" />
+              <span className="text-blue-500 dark:text-blue-500">Image</span>
+            </>
+          ) : (
+            <>
+              <FileImage color={theme === "light" ? "#1f2937" : "white"} />
+              <span className="text-gray-900 dark:text-gray-400">Image</span>
+            </>
+          )}
+        </button>
         {isNonMobileScreen ? (
           <>
-            <div className="flex items-center justify-between gap-1">
-              <Video color={theme === "light" ? "#1f2937" : "white"} />
-              <span className="text-gray-900 hover:text-blue-500 dark:text-gray-400">
-                Clip
-              </span>
-            </div>
-            <div className="flex items-center justify-between gap-1">
-              <Paperclip color={theme === "light" ? "#1f2937" : "white"} />
-              <span className="text-gray-900 hover:text-blue-500 dark:text-gray-400">
-                Attachment
-              </span>
-            </div>
-            <div className="flex items-center justify-between gap-1">
-              <Mic color={theme === "light" ? "#1f2937" : "white"} />
-              <span className="text-gray-900 hover:text-blue-500 dark:text-gray-400">
-                Audio
-              </span>
-            </div>
+            <button
+              disabled
+              className="flex cursor-not-allowed items-center justify-between gap-1"
+              onMouseEnter={() => setHovered("video")}
+              onMouseLeave={() => setHovered("")}
+            >
+              {hovered === "video" ? (
+                <>
+                  <Video color="#1e90ff" />
+                  <span className="text-blue-500 dark:text-blue-500">
+                    Video
+                  </span>
+                </>
+              ) : (
+                <>
+                  <Video color={theme === "light" ? "#1f2937" : "white"} />
+                  <span className="text-gray-900 dark:text-gray-400">
+                    Video
+                  </span>
+                </>
+              )}
+            </button>
+            <button
+              disabled
+              className="flex cursor-not-allowed items-center justify-between gap-1"
+              onMouseEnter={() => setHovered("attachment")}
+              onMouseLeave={() => setHovered("")}
+            >
+              {hovered === "attachment" ? (
+                <>
+                  <Paperclip color="#1e90ff" />
+                  <span className="text-blue-500 dark:text-blue-500">
+                    Attachment
+                  </span>
+                </>
+              ) : (
+                <>
+                  <Paperclip color={theme === "light" ? "#1f2937" : "white"} />
+                  <span className="text-gray-900 dark:text-gray-400">
+                    Attachment
+                  </span>
+                </>
+              )}
+            </button>
+            <button
+              disabled
+              className="flex cursor-not-allowed items-center justify-between gap-1"
+              onMouseEnter={() => setHovered("audio")}
+              onMouseLeave={() => setHovered("")}
+            >
+              {hovered === "audio" ? (
+                <>
+                  <Mic color="#1e90ff" />
+                  <span className="text-blue-500 dark:text-blue-500">
+                    Audio
+                  </span>
+                </>
+              ) : (
+                <>
+                  <Mic color={theme === "light" ? "#1f2937" : "white"} />
+                  <span className="text-gray-900 dark:text-gray-400">
+                    Audio
+                  </span>
+                </>
+              )}
+            </button>
           </>
         ) : (
-          <div className="flex items-center justify-between gap-1">
-            <MoreHorizontal color={theme === "light" ? "#1f2937" : "white"} />
-          </div>
+          <button
+            disabled
+            className="flex cursor-not-allowed items-center justify-between gap-1"
+          >
+            {hovered === "more" ? (
+              <MoreHorizontal color="#1e90ff" />
+            ) : (
+              <MoreHorizontal color={theme === "light" ? "#1f2937" : "white"} />
+            )}
+          </button>
         )}
 
         {/* SUBMIT BUTTON */}
