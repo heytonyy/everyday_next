@@ -1,7 +1,7 @@
-import AvatarImage from "./AvatarImage";
 import { UserPlus, UserMinus } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "next-themes";
+import AvatarImage from "@/components/AvatarImage";
 
 export default function FriendHeader() {
   // TODO: use friend from redux when implemented

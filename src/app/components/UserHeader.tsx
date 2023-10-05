@@ -1,5 +1,5 @@
-import { useAppSelector } from "../state/hooks";
-import AvatarImage from "./AvatarImage";
+import { useAppSelector } from "@/state/hooks";
+import AvatarImage from "@/components/AvatarImage";
 import { useUser } from "@clerk/nextjs";
 
 export default function UserHeader() {

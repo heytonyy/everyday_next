@@ -1,10 +1,9 @@
-import { useState } from "react";
-import Image from "next/image";
-import FriendHeader from "./FriendHeader";
-import { useEffect } from "react";
 import { ThumbsDown, ThumbsUp, MessageSquare } from "lucide-react";
-import CardDivider from "./CardDivider";
+import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import Image from "next/image";
+import FriendHeader from "@/components/FriendHeader";
+import CardDivider from "@/components/CardDivider";
 
 export default function Day() {
   // TODO: use like from redux when implemented
@@ -38,7 +37,8 @@ export default function Day() {
       {/* DAY SECTION */}
       <div className="text-gray-900 dark:text-white">Day Description</div>
       {/* DAY IMAGE */}
-      <div id="image-container">
+      {/* NEED TO FIX THIS IMAGE  */}
+      <div id="image-container" className="relative">
         {width && (
           <Image
             priority

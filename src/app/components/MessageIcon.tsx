@@ -1,6 +1,6 @@
 import { MessageCircle } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 
 export default function MessageIcon() {

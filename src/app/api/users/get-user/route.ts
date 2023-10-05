@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
-import { getDb } from "@/app/lib/db";
-import { User } from "../../state/types";
+import { getDb } from "@/app/config/db";
+import { User } from "@/state/types";
 
-// GET /api/get-user
+// GET /api/users/get-user
 export async function GET() {
   const clerkUser = await currentUser();
 

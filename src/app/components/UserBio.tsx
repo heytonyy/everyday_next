@@ -1,7 +1,7 @@
 import { BookOpen } from "lucide-react";
-import CardDivider from "./CardDivider";
+import CardDivider from "@/components/CardDivider";
 import { useTheme } from "next-themes";
-import { useAppSelector } from "../state/hooks";
+import { useAppSelector } from "@/state/hooks";
 
 export default function UserBio() {
   const { theme } = useTheme();

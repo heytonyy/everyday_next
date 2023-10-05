@@ -19,7 +19,7 @@ ButtonProp<T> & Omit<ComponentPropsWithoutRef<T>, keyof ButtonProp<T>>) {
       {...props}
       // this allows us to merge the className prop with our own to override the default styles
       className={twMerge(
-        "flex items-center justify-center gap-2 rounded bg-blue-500 p-[0.875rem] text-white active:bg-blue-600 disabled:bg-gray-200",
+        "flex items-center justify-center gap-2 rounded bg-blue-500 p-2 text-white active:bg-blue-600 disabled:bg-gray-200",
         props.className
       )}
     />

@@ -1,7 +1,7 @@
 "use client";
-import FriendsList from "./FriendsList";
-import UserHeader from "./UserHeader";
-import UserBio from "./UserBio";
+import FriendsList from "@/components/FriendsList";
+import UserHeader from "@/components/UserHeader";
+import UserBio from "@/components/UserBio";
 
 export default function UserCard() {
   return (

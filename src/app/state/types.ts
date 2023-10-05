@@ -14,19 +14,15 @@ interface User {
   updatedAt?: Date;
 }
 
-interface UserProps {
-  user: User;
+interface Day {
+  _id?: ObjectId;
+  userId: string;
+  description: string;
+  imageUrl: string;
+  likes?: Map<string, boolean>;
+  comments?: string[];
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-type Day = {
-  _id: string;
-  userId: string;
-  username: string;
-  location: string;
-  description: string;
-  picturePath: string;
-  likes: Map<string, boolean>;
-  comments: string[];
-};
-
-export type { StoreState, Day, User, UserProps };
+export type { StoreState, Day, User };

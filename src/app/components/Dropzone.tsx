@@ -1,27 +1,41 @@
-import { useDropzone } from "react-dropzone";
 import { Pencil, Trash2 } from "lucide-react";
-import { useState } from "react";
-import { useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useTheme } from "next-themes";
+import { useDropzone } from "react-dropzone";
 
 interface DropzoneProps {
   clearSetImage: boolean;
+  setDayImage: (image: File | null) => void;
 }
 
-export default function DropzoneComponent({ clearSetImage }: DropzoneProps) {
+export default function DropzoneComponent({
+  clearSetImage,
+  setDayImage,
+}: DropzoneProps) {
   const [image, setImage] = useState<File | null>(null);
 
   const { theme } = useTheme();
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    setImage(acceptedFiles[0]);
+    if (acceptedFiles.length > 0) {
+      setImage(acceptedFiles[0]);
+      setDayImage(acceptedFiles[0]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   if (!clearSetImage) {
     setImage(null);
+    setDayImage(null);
   }
+
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setImage(null);
+    setDayImage(null);
+  };
 
   return (
     <div
@@ -41,7 +55,7 @@ export default function DropzoneComponent({ clearSetImage }: DropzoneProps) {
           </div>
         )}
         {image && (
-          <button onClick={() => setImage(null)}>
+          <button type="button" onClick={handleDelete}>
             <Trash2 color={theme === "light" ? "#1f2937" : "white"} />
           </button>
         )}

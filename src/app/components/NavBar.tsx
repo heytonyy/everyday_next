@@ -1,11 +1,11 @@
 "use client";
 
-import { mdBreakpoint } from "@/utils/tailwind";
-import useWindowSize from "@/hooks/useWindowSize";
 import { useRouter } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
-import { ThemeToggler } from "./ThemeToggler";
-import MessageIcon from "./MessageIcon";
+import { mdBreakpoint } from "@/utils/tailwind";
+import { ThemeToggler } from "@/components/ThemeToggler";
+import MessageIcon from "@/components/MessageIcon";
+import useWindowSize from "@/hooks/useWindowSize";
 
 export default function NavBar() {
   const windowSize = useWindowSize();

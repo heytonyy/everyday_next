@@ -3,13 +3,13 @@
 import { useEffect } from "react";
 import { LoadingIndicator } from "stream-chat-react";
 import { mdBreakpoint } from "@/utils/tailwind";
+import { setUser } from "@/state/reducers";
+import { useAppDispatch, useAppSelector } from "@/state/hooks";
 import useWindowSize from "@/hooks/useWindowSize";
-import NavBar from "../components/NavBar";
-import UserCard from "../components/UserCard";
-import MyDayForm from "../components/MyDayForm";
-import AllDaysFeed from "../components/AllDaysFeed";
-import { useAppDispatch, useAppSelector } from "../state/hooks";
-import { setUser } from "../state/reducers";
+import NavBar from "@/components/NavBar";
+import UserCard from "@/components/UserCard";
+import MyDayForm from "@/components/MyDayForm";
+import AllDaysFeed from "@/components/AllDaysFeed";
 
 export default function DayFeed() {
   const windowSize = useWindowSize();
@@ -20,7 +20,7 @@ export default function DayFeed() {
 
   useEffect(() => {
     const getUser = async () => {
-      const response = await fetch("/api/get-user");
+      const response = await fetch("/api/users/get-user");
       const data = await response.json();
       dispatch(setUser(data.user));
     };
@@ -60,7 +60,7 @@ export default function DayFeed() {
           }`}
         >
           <MyDayForm />
-          <AllDaysFeed user={user} />
+          <AllDaysFeed />
         </div>
       </div>
     </>

@@ -1,7 +1,6 @@
-import Day from "./Day";
-import { UserProps } from "../state/types";
+import Day from "@/components/Day";
 
-export default function AllDaysFeed({ user }: UserProps) {
+export default function AllDaysFeed() {
   return (
     <div className="mt-4">
       {/* MAP THROUGH DAYS HERE */}

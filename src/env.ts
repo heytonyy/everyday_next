@@ -5,6 +5,8 @@ interface RuntimeEnv {
   NEXT_PUBLIC_STREAM_KEY: string;
   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: string;
   MONGODB_URI: string;
+  AWS_S3_ACCESS_KEY: string;
+  AWS_S3_SECRET_KEY: string;
 }
 
 // use zod to validate the environment variables and create a type-safe env object
@@ -14,6 +16,8 @@ export const env = createEnv({
     STREAM_SECRET: z.string().min(1),
     CLERK_SECRET_KEY: z.string().min(1),
     MONGODB_URI: z.string().min(1),
+    AWS_S3_ACCESS_KEY: z.string().min(1),
+    AWS_S3_SECRET_KEY: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_STREAM_KEY: z.string().min(1),
@@ -24,5 +28,7 @@ export const env = createEnv({
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
       process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
     MONGODB_URI: process.env.MONGODB_URI,
+    AWS_S3_ACCESS_KEY: process.env.AWS_S3_ACCESS_KEY,
+    AWS_S3_SECRET_KEY: process.env.AWS_S3_SECRET_KEY,
   } as RuntimeEnv,
 });

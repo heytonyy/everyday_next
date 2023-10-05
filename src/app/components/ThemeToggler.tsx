@@ -1,10 +1,10 @@
 "use client";
 
+import { Moon, Sun } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { Moon, Sun } from "lucide-react";
-import { useAppDispatch } from "../state/hooks";
-import { setMode } from "../state/reducers";
+import { useAppDispatch } from "@/state/hooks";
+import { setMode } from "@/state/reducers";
 
 export function ThemeToggler() {
   const [mounted, setMounted] = useState(false);
